@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="floor_plant">
+    <static>true</static>
+    <link name="link">
+      
+      <!-- MAIN BOUNDING COLLISION -->
+      <collision name="planter_collision">
+        <pose>0 0 0.7 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.22</radius>
+            <length>1.4</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <!-- VISUAL: CUBIC OR CYLINDRICAL FLOOR PLANTER -->
+      <visual name="planter_base_visual">
+        <pose>0 0 0.3 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>0.6</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name> <!-- Sleek, modern concrete/stone look -->
+          </script>
+        </material>
+      </visual>
+
+      <!-- VISUAL: PLANTER RIM STYLING -->
+      <visual name="planter_rim_visual">
+        <pose>0 0 0.59 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.21</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/DarkGrey</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- VISUAL: PLANTER SOIL -->
+      <visual name="soil_visual">
+        <pose>0 0 0.58 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.19</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Dirt</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- VISUAL: TALL TROPICAL LEAVES (CENTRAL STEM) -->
+      <visual name="plant_leaves_main">
+        <pose>0 0 1.0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.15</radius>
+            <length>0.8</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.4 0.1 1.0</ambient>
+          <diffuse>0.15 0.5 0.15 1.0</diffuse>
+        </material>
+      </visual>
+
+      <!-- VISUAL: EXPANDING SHRUB TOP -->
+      <visual name="plant_leaves_top">
+        <pose>0 0 1.2 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.25</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.1 0.4 0.1 1.0</ambient>
+          <diffuse>0.2 0.55 0.2 1.0</diffuse>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+</sdf>

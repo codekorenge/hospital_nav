@@ -1,0 +1,185 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="hospital_bed_with_patient">
+    <static>true</static>
+    <link name="link">
+      
+      <!-- MAIN MATTRESS COLLISION -->
+      <collision name="mattress_collision">
+        <pose>0 0 0.6 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2.1 0.9 0.15</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <!-- BASE FRAME COLLISION -->
+      <collision name="base_collision">
+        <pose>0 0 0.25 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2.0 0.85 0.5</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <!-- VISUAL: METAL BASE LEGS & FRAME -->
+      <visual name="base_frame_visual">
+        <pose>0 0 0.26 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2.05 0.86 0.52</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- VISUAL: MEDICAL BLUE MATTRESS -->
+      <visual name="mattress_visual">
+        <pose>0 0 0.6 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2.1 0.9 0.15</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.0 0.2 0.5 1.0</ambient>
+          <diffuse>0.0 0.3 0.7 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+
+      <!-- VISUAL: HEADBOARD -->
+      <visual name="headboard_visual">
+        <pose>-1.03 0 0.7 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.9 0.5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- VISUAL: FOOTBOARD -->
+      <visual name="footboard_visual">
+        <pose>1.03 0 0.62 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.9 0.35</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- VISUAL: SAFETY RAILS -->
+      <visual name="left_rail">
+        <pose>0 0.44 0.7 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.4 0.02 0.25</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/ZincChromate</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="right_rail">
+        <pose>0 -0.44 0.7 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.4 0.02 0.25</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/ZincChromate</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- ==================== NEW: PILLOW ==================== -->
+      <visual name="pillow_visual">
+        <pose>-0.8 0 0.7 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.35 0.65 0.07</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- ==================== NEW: PATIENT MANNEQUIN ==================== -->
+      <!-- Patient Torso -->
+      <visual name="patient_torso">
+        <pose>-0.1 0 0.76 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.9 0.45 0.18</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Green</name> <!-- Patient gown color -->
+          </script>
+        </material>
+      </visual>
+
+      <!-- Patient Head (resting on pillow) -->
+      <visual name="patient_head">
+        <pose>-0.72 0 0.84 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.11</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.9 0.75 0.65 1.0</ambient>
+          <diffuse>0.9 0.75 0.65 1.0</diffuse>
+        </material>
+      </visual>
+
+      <!-- Patient Legs -->
+      <visual name="patient_legs">
+        <pose>0.6 0 0.74 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.8 0.4 0.14</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Green</name>
+          </script>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+</sdf>
