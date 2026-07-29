@@ -23,16 +23,42 @@ ARM_JOINTS = [
 # Named poses
 # ---------------------------------------------------------
 
-FOLDED_POSE = [
-    0.0,
-    1.5,
-    -2.2,
-    2.2,
-    0.0,
-    0.0,
-    0.0,
-]
+# Initial position captured with `ros2 topic echo /joint_states
+# # - wheel_right_joint: -0.0030899026842856614
+# # - head_2_joint: -2.0242081344434837e-07
+# - arm_1_joint: 0.5000003992651374
+# # - head_1_joint: 3.0570413045438727e-07
+# # - gripper_right_finger_joint: 1.8763710576391217e-10
+# - arm_2_joint: -1.3399969565557184
+# - arm_3_joint: -0.47999641552419803
+# # - gripper_left_finger_joint: 2.941841174814095e-07
+# - arm_6_joint: 1.3700214191731916
+# # - wheel_left_joint: -0.00010604533889058132
+# - arm_7_joint: -9.978828128254236e-07
+# - arm_5_joint:  -1.4900037939219049
+# - arm_4_joint: 1.9399731688915516
+# # - torso_lift_joint: 0.14992126841488307
 
+# FOLDED_POSE = [
+#     0.45,
+#    -1.30,
+#    -0.70,
+#     1.90,
+#    -1.55,
+#     1.40,
+#     0.00,
+# ]
+
+# Tighter to body.
+FOLDED_POSE = [
+    0.45,
+   -1.30,
+   -0.70,
+    1.90,
+   -1.55,
+    1.40,
+    0.00,
+]
 
 MED_HANDOVER_POSE = [
     0.0,
