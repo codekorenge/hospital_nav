@@ -2,7 +2,7 @@
 The following code runs on ROS 2 Humble and Gazebo 11.
 
 ## Tiago Setup
-1. First, create a ROS 2 workspace to world on the source code:\
+1. First, create a ROS 2 workspace to integrate the custom world on the source code:\
 `mkdir -p ~/tiago_public_ws/src
 cd ~/tiago_public_ws`
 2. Use the version control tool (vcs) to import all the required ROS 2 Humble packages provided by PAL Robotics to avoid runtime conflicts:\
