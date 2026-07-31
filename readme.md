@@ -27,10 +27,10 @@ The Pal Robot was breaking in RViz when the cartographer service was launched. S
 `sudo apt install ros-humble-nav2-simple-commander`
 2. Launched Tiago using the following line in the hospital:\
 `ros2 launch tiago_gazebo tiago_hospital_3.launch.py`
-3. The following lines are wrapped in give_medicine.py with the patient coordinates defined.\
+3. The following lines are wrapped in `give_medicine.py` with the patient coordinates defined.\
 `./med_action.py --nav 0.6,5.6,0 --action handover
 ./med_action.py --nav 0.6,5.6,0 --action fold
 ./med_action.py --nav 0.0,0.0,0 --action fold`
-4. Hence, when using medicine.py, only the patient ID needs to be provided. Currently, it supports IDs 01 through 03.\
+4. Hence, when using `give_medicine.py`, only the patient ID needs to be provided. Currently, it supports IDs 01 through 03.\
 `./give_medicine.py patient01`
 
