@@ -7,6 +7,10 @@ import rclpy
 from navigation import create_navigator, navigate_to
 from movement import ArmController, execute_action
 
+"""
+This script uses the movement.py and navigation.py scripts to perform medical delivery actions.
+"""
+
 
 def parse_arguments():
     """Parse command-line arguments."""
@@ -15,11 +19,7 @@ def parse_arguments():
         description="TIAGo navigation + manipulation action"
     )
 
-    parser.add_argument(
-        "--nav",
-        required=True,
-        help="Navigation goal: x,y,yaw"
-    )
+    parser.add_argument("--nav", required=True, help="Navigation goal: x,y,yaw")
 
     parser.add_argument(
         "--action",
@@ -28,7 +28,7 @@ def parse_arguments():
             "fold",
             "handover",
         ],
-        help="Action to execute after navigation"
+        help="Action to execute after navigation",
     )
 
     return parser.parse_args()
@@ -40,9 +40,7 @@ def parse_nav(value):
     values = value.split(",")
 
     if len(values) != 3:
-        raise ValueError(
-            "Navigation must be specified as x,y,yaw"
-        )
+        raise ValueError("Navigation must be specified as x,y,yaw")
 
     return [float(v) for v in values]
 
@@ -65,45 +63,22 @@ def main():
 
     try:
 
-        # ---------------------------------------------
         # Step 1: Navigate
-        # ---------------------------------------------
-
-        navigation_success = navigate_to(
-            navigator,
-            x,
-            y,
-            yaw
-        )
+        navigation_success = navigate_to(navigator, x, y, yaw)
 
         if not navigation_success:
-            print(
-                "\nNavigation failed."
-                "\nAction will NOT be executed."
-            )
+            print("\nNavigation failed." "\nAction will NOT be executed.")
             return
 
-        # ---------------------------------------------
         # Step 2: Perform action
-        # ---------------------------------------------
+        print(f"\nExecuting action: {args.action}")
 
-        print(
-            f"\nExecuting action: {args.action}"
-        )
-
-        action_success = execute_action(
-            arm_controller,
-            args.action
-        )
+        action_success = execute_action(arm_controller, args.action)
 
         if action_success:
-            print(
-                f"\nAction '{args.action}' completed."
-            )
+            print(f"\nAction '{args.action}' completed.")
         else:
-            print(
-                f"\nAction '{args.action}' failed."
-            )
+            print(f"\nAction '{args.action}' failed.")
 
     except KeyboardInterrupt:
 

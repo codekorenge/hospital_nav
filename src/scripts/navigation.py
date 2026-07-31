@@ -5,6 +5,10 @@ import math
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator
 
+"""
+This script provides a simple interface to the Nav2 navigation stack.
+"""
+
 
 def create_goal(navigator, x, y, yaw):
     """Create a Nav2 goal pose in the map frame."""
@@ -25,19 +29,11 @@ def create_goal(navigator, x, y, yaw):
 
 
 def navigate_to(navigator, x, y, yaw):
-    """Navigate to (x, y, yaw).
-
-    Returns True when Nav2 reports success.
-    """
+    """Navigate to (x, y, yaw).Returns True when Nav2 reports success."""
 
     print(f"Navigation goal: x={x}, y={y}, yaw={yaw}")
 
-    goal = create_goal(
-        navigator,
-        x,
-        y,
-        yaw
-    )
+    goal = create_goal(navigator, x, y, yaw)
 
     navigator.goToPose(goal)
 
@@ -46,10 +42,7 @@ def navigate_to(navigator, x, y, yaw):
         feedback = navigator.getFeedback()
 
         if feedback is not None:
-            print(
-                f"Distance remaining: "
-                f"{feedback.distance_remaining:.2f} m"
-            )
+            print(f"Distance remaining: " f"{feedback.distance_remaining:.2f} m")
 
     result = navigator.getResult()
 

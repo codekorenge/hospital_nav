@@ -4,9 +4,7 @@ import os
 import sys
 
 # Allow importing navigation.py from ../
-SCRIPT_DIR = os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__))
-)
+SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 sys.path.insert(0, SCRIPT_DIR)
 
@@ -27,10 +25,7 @@ def main():
 
     try:
 
-        # ---------------------------------------------
         # Test 1: Fold
-        # ---------------------------------------------
-
         print("\nTEST 1: Fold arm")
 
         if not fold_arm(controller):
@@ -39,9 +34,7 @@ def main():
 
         print("TEST PASSED: Fold")
 
-        # ---------------------------------------------
         # Test 2: Handover
-        # ---------------------------------------------
 
         print("\nTEST 2: Handover pose")
 
@@ -51,10 +44,7 @@ def main():
 
         print("TEST PASSED: Handover")
 
-        # ---------------------------------------------
         # Test 3: Fold again
-        # ---------------------------------------------
-
         print("\nTEST 3: Fold arm again")
 
         if not fold_arm(controller):

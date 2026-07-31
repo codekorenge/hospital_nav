@@ -7,6 +7,9 @@ from rclpy.node import Node
 from control_msgs.action import FollowJointTrajectory
 from trajectory_msgs.msg import JointTrajectoryPoint
 
+"""
+This script provides a simple interface to control the TIAGo robot's arm using ROS 2
+"""
 
 ARM_JOINTS = [
     "arm_1_joint",
@@ -39,6 +42,7 @@ ARM_JOINTS = [
 # - arm_4_joint: 1.9399731688915516
 # # - torso_lift_joint: 0.14992126841488307
 
+# A little wider.
 # FOLDED_POSE = [
 #     0.45,
 #    -1.30,
@@ -52,10 +56,10 @@ ARM_JOINTS = [
 # Tighter to body.
 FOLDED_POSE = [
     0.45,
-   -1.30,
-   -0.70,
+    -1.30,
+    -0.70,
     1.90,
-   -1.55,
+    -1.55,
     1.40,
     0.00,
 ]
@@ -77,18 +81,14 @@ class ArmController(Node):
         super().__init__("tiago_arm_controller")
 
         self.client = ActionClient(
-            self,
-            FollowJointTrajectory,
-            "/arm_controller/follow_joint_trajectory"
+            self, FollowJointTrajectory, "/arm_controller/follow_joint_trajectory"
         )
 
     def move_to(self, positions, duration=5.0):
         """Move the arm to a joint configuration."""
 
         if len(positions) != len(ARM_JOINTS):
-            raise ValueError(
-                "Expected 7 joint positions."
-            )
+            raise ValueError("Expected 7 joint positions.")
 
         goal = FollowJointTrajectory.Goal()
 
@@ -100,45 +100,30 @@ class ArmController(Node):
 
         goal.trajectory.points.append(point)
 
-        self.get_logger().info(
-            f"Moving arm to: {positions}"
-        )
+        self.get_logger().info(f"Moving arm to: {positions}")
 
         self.client.wait_for_server()
 
         future = self.client.send_goal_async(goal)
 
-        rclpy.spin_until_future_complete(
-            self,
-            future
-        )
+        rclpy.spin_until_future_complete(self, future)
 
         goal_handle = future.result()
 
         if not goal_handle.accepted:
-            self.get_logger().error(
-                "Arm trajectory rejected."
-            )
+            self.get_logger().error("Arm trajectory rejected.")
             return False
 
-        self.get_logger().info(
-            "Arm trajectory accepted."
-        )
+        self.get_logger().info("Arm trajectory accepted.")
 
-        result_future = (
-            goal_handle.get_result_async()
-        )
+        result_future = goal_handle.get_result_async()
 
-        rclpy.spin_until_future_complete(
-            self,
-            result_future
-        )
+        rclpy.spin_until_future_complete(self, result_future)
 
         result = result_future.result().result
 
         self.get_logger().info(
-            f"Arm motion completed with "
-            f"error code: {result.error_code}"
+            f"Arm motion completed with " f"error code: {result.error_code}"
         )
 
         return result.error_code == 0
@@ -149,9 +134,7 @@ def fold_arm(controller):
 
     print("Folding arm...")
 
-    return controller.move_to(
-        FOLDED_POSE
-    )
+    return controller.move_to(FOLDED_POSE)
 
 
 def handover_medication(controller):
@@ -159,9 +142,7 @@ def handover_medication(controller):
 
     print("Moving arm to medication handover pose...")
 
-    return controller.move_to(
-        MED_HANDOVER_POSE
-    )
+    return controller.move_to(MED_HANDOVER_POSE)
 
 
 def execute_action(controller, action):
@@ -173,8 +154,6 @@ def execute_action(controller, action):
     }
 
     if action not in actions:
-        raise ValueError(
-            f"Unknown action: {action}"
-        )
+        raise ValueError(f"Unknown action: {action}")
 
     return actions[action](controller)
