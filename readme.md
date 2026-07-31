@@ -8,9 +8,9 @@ cd ~/tiago_public_ws`
 2. Use the version control tool (vcs) to import all the required ROS 2 Humble packages provided by PAL Robotics to avoid runtime conflicts:\
 `vcs import --input https://raw.githubusercontent.com/pal-robotics/tiago_tutorials/humble-devel/tiago_public.repos src`
 3. Initialize and update rosdep to pull down all necessary underlying libraries and standard ROS 2 dependencies:\
-`sudo rosdep init \
-rosdep update \
-sudo rosdep install --from-paths src -y --ignore-src`
+`sudo rosdep init`
+`rosdep update`
+`sudo rosdep install --from-paths src -y --ignore-src`
 
 ## Map Generation
 The Pal Robot was breaking in RViz when the cartographer service was launched. A serious level of instability due to a broken version was witnessed in ROS packages. 
