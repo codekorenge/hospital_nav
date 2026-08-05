@@ -80,13 +80,9 @@ def main():
 
     success = give_medicine(args.patient)
 
-    # Capture the stop time.
-    stop_time = time.perf_counter()
-
-    # Calculate the difference
-    execution_time = stop_time - start_time
-
-    print(f"Action took {execution_time:.6f} seconds to run.")
+    # Calculate elapsed time and print
+    execution_time = time.perf_counter() - start_time
+    print(f"Navigation took {execution_time:.2f} seconds.") 
 
     return 0 if success else 1
 
