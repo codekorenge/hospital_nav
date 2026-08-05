@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import time
 
 import rclpy
 
@@ -64,11 +65,16 @@ def main():
     try:
 
         # Step 1: Navigate
+        start_time = time.perf_counter()
         navigation_success = navigate_to(navigator, x, y, yaw)
 
         if not navigation_success:
             print("\nNavigation failed." "\nAction will NOT be executed.")
             return
+
+        # Calculate elapsed time and print
+        execution_time = time.perf_counter() - start_time
+        print(f"Navigation took {execution_time:.2f} seconds.") 
 
         # Step 2: Perform action
         print(f"\nExecuting action: {args.action}")
